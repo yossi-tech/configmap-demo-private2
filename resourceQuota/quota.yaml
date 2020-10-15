@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: quota-demo
+  labels:
+    name: quota-demo
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: quota-demo
+  namespace: quota-demo
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu : "2"
+    limits.memory: 2Gi
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+    name: quota-demo
+    namespace: quota-demo
+spec:
+    limits:
+    - max:
+        memory: 500Mi
+        cpu: 0.5
+    - min : 
+        memory: 100Mi
+        cpu:  0.1     
+    - default:
+        memory: 500Mi
+        cpu: 0.5
+    defaultRequest:
+        memory: 250Mi
+        cpu: 0.25
+    type: Container
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: quota-demo
+    namespace: quota-demo
+    labels:
+      app: quota-demo
+spec:
+    replicas: 3
+    selector:
+    matchLabels:
+        app: quota-demo
+    template:
+    metadata:
+        labels:
+          app: quota-demo
+    spec:
+        containers:
+        - name: nginx
+        image: nginx:latest

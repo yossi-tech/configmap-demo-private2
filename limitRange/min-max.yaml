@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev-min-max
+  labels:
+    name: dev-min-max
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-cpu-limit-range
+  namespace: dev-min-max
+spec:
+  limits:
+  - max:
+      memory: 1Gi
+      cpu: 1
+  - min : 
+      memory: 100M
+      cpu:  100m     
+  - default:
+      memory: 512Mi
+      cpu: 1
+    defaultRequest:
+      memory: 256Mi
+      cpu: 0.5
+    type: Container
+---
+apiVersion : v1
+kind: Pod
+metadata:
+    name : pod-lim
+    namespace: dev-min-max
+    labels:
+        app: dev-min-max
+spec:
+    containers:
+    -   name : cont-lim-min-max
+        image: nginx:alpine
+        resources: 
+        limits:
+            memory: 500M
+            cpu: 0.5
+        request:
+            memory: 400M
+            cpu: 0.3
