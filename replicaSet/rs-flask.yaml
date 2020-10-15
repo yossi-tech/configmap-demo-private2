@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-test
+  labels:
+    app: rs-test
+spec:
+  # modifica las réplicas según tu caso de uso
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pod-label-flask
+  template:
+    metadata:
+      labels:
+        app: pod-label-flask
+    spec:
+        containers:
+        -   name : cont-flask
+            image: backend-k8s-hands-on:v3  
+            
+        

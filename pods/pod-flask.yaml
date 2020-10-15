@@ -1,0 +1,8 @@
+apiVersion : v1
+kind: Pod
+metadata:
+    name : container-flask
+spec:
+    containers:
+    -   name : cont1
+        image: backend-k8s-hands-on:v1

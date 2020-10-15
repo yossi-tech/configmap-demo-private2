@@ -1,0 +1,5 @@
+/k8s-hands-on/env
+/k8s-hands-on/*.pyc
+*.pyc
+/__pychache__
+env

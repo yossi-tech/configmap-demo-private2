@@ -1,7 +1,9 @@
 apiVersion : v1
 kind: Pod
 metadata:
-    name : podtest2
+    name : pod-test-1
+    labels:
+        app: test
 spec:
     containers:
     -   name : cont1
