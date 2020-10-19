@@ -1,0 +1,2 @@
+# DOCUMENTATION : https://docs.aws.amazon.com/eks/latest/userguide/horizontal-pod-autoscaler.html#:~:text=The%20Kubernetes%20Horizontal%20Pod%20Autoscaler,on%20that%20resource's%20CPU%20utilization.&text=When%20you%20set%20a%20target,try%20to%20meet%20that%20target.
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.7/components.yaml
